@@ -1,0 +1,11 @@
+{
+    "id": "advanced-canvas",
+    "name": "Advanced Canvas",
+    "version": "5.2.0",
+    "minAppVersion": "1.1.0",
+    "description": "为你的画布体验加速！创建演示文稿、流程图等更多内容！",
+    "author": "Developer-Mike",
+    "authorUrl": "https://github.com/Developer-Mike",
+    "fundingUrl": "https://ko-fi.com/X8X27IA08",
+    "isDesktopOnly": false
+}

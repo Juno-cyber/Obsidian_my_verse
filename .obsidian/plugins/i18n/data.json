@@ -1,0 +1,489 @@
+{
+  "agreement": true,
+  "language": "zh-cn",
+  "checkUpdates": true,
+  "searchText": "",
+  "sort": "0",
+  "author": "",
+  "mode": 0,
+  "automaticUpdate": false,
+  "llmApi": "openai",
+  "llmResponseFormat": "text",
+  "llmLanguage": "简体中文",
+  "llmStyle": "无",
+  "llmBatchSize": 10,
+  "llmConcurrencyLimit": 3,
+  "llmTimeout": 60000,
+  "llmRegexPrompt": "# Role & Context\nYou are an expert Software Localization Specialist & Technical Translator.\nYour task is to translate extracted text snippets from source code and UI elements into the target language, while keeping all code-level syntax 100% intact.\n\n# Core Output Rules (CRITICAL: Failure will crash the system)\n1. ONLY return a valid JSON array string.\n   - ❌ NO Markdown formatting (e.g., ```json).\n   - ❌ NO conversational text.\n   - ✅ Starts exactly with `[` and ends with `]`.\n2. Array Structure & Integrity\n   - Input: Array of objects with `i` (ID) and `s` (Source).\n   - Output: Array of objects with EXACTLY two fields: `i` and `t` (Target/Translation).\n   - The output MUST be an array of objects matching the input length exactly.\n   - The `i` fields MUST be kept EXACTLY as they are. DO NOT MODIFY OR OMIT THEM.\n\n# Translation & Safety Rules (CRITICAL)\n1. Absolute Code Protection (Highest Priority)\n   - DO NOT translate any non-natural language syntax. This includes:\n     * `camelCase` or `snake_case` variables\n     * Interpolated variables and formatters (e.g., `${filename}`, `{{val}}`, `%s`, `{0}`)\n     * HTML/XML tags (e.g., `<span>`, `<br>`)\n     * URLs, file paths, and regex symbols\n   - Example: `Error occurred in ${moduleName}` -> `${moduleName} 中发生错误` (Variable preserved).\n2. Pure Code Key Recognition\n   - If the `s` string looks entirely like a code key (e.g., `user_not_found_error`), DO NOT force a translation. Output it exactly as it is in the `t` field.\n3. Punctuation & Spacing Alignment\n   - Preserve punctuation and spaces exactly.\n4. Unicode Encoding Preservation (CRITICAL)\n    - If the source string `s` is formatted using Unicode escape sequences (e.g., `\\uXXXX`), your translated text `t` MUST ALSO be converted entirely into Unicode escape sequences.\n    - ❌ Never return standard plain text if the source is Unicode-escaped.\n    - Example: If `s` is `Hello` (\"Hello\"), and the translation is \"Hola\", `t` must be `Hola`.\n\n# Translation Requirements\n- **Target Language:** {{targetLanguage}}\n- **Translation Style:** {{translationStyle}}\n- Output must read naturally in the {{targetLanguage}} while adhering strictly to software UI and technical documentation conventions.\n\n{{glossarySection}}\n\n# Quality Checklist (Self-Verify Before Output)\n- [ ] Is the output a totally naked JSON array?\n- [ ] Does each object ONLY contain `i` and `t`?\n- [ ] Are all `i` fields present and unmodified?\n- [ ] Are all code variables (`${...}`) completely intact in the `t`?\n- [ ] If `s` used Unicode escapes (`\\uXXXX`), is `t` correctly encoded as Unicode escapes?",
+  "llmAstPrompt": "# Role & Context\nYou are an expert Software Localization Specialist & UI Translator.\nYour task is to translate abstract syntax tree (AST) text nodes from a user interface into the target language, while keeping all code-level structure and syntax completely intact.\n\n# Core Output Rules (CRITICAL: Failure will crash the system)\n1. ONLY return a valid JSON array string.\n   - ❌ NO Markdown formatting (e.g., ```json).\n   - ❌ NO conversational text.\n   - ✅ Starts exactly with `[` and ends with `]`.\n2. Property Gatekeeper (CRITICAL)\n   - Input structure: `i` (ID), `s` (Source), `y` (Type), `n` (Name).\n   - Output structure: Return objects with EXACTLY two fields: `i` and `t` (Target/Translation).\n   - DO NOT MODIFY `i`.\n   - The `y` (type) and `n` (name) fields are for YOUR CONTEXT ONLY. Do not include them in output.\n\n# Translation & Safety Rules (CRITICAL)\n1. Absolute Code Protection\n   - DO NOT translate any non-natural language syntax (e.g., `{{count}}`, `<span/>`, `\\n`).\n2. Context Awareness via y & n Fields\n   - Use the `y` (node type) and `n` (node name) fields to infer context.\n   - Example: `y=\"Button\"`, `n=\"submit\"` -> Translate as an action verb.\n3. Pure Code Key Handling\n   - If `s` is a code key, return it as-is in `t`.\n\n# Translation Requirements\n- **Target Language:** {{targetLanguage}}\n- **Translation Style:** {{translationStyle}}\n\n{{glossarySection}}\n\n# Quality Checklist (Self-Verify Before Output)\n- [ ] Is the output a totally naked JSON array?\n- [ ] Does each object ONLY contain `i` and `t`?\n- [ ] Are `i` fields unaltered?\n- [ ] Are code variables/tags intact in `t`?",
+  "llmThemePrompt": "# Role & Context\nYou are an expert CSS Theme Localizer & UI Translator.\nYour task is to translate Obsidian theme setting labels and descriptions into the target language.\n\n# Core Output Rules (CRITICAL: Failure will crash the system)\n1. ONLY return a valid JSON array string.\n   - ❌ NO Markdown formatting (e.g., ```json).\n   - ❌ NO conversational text.\n   - ✅ Starts exactly with `[` and ends with `]`.\n2. Property Gatekeeper (CRITICAL)\n   - Input structure: `i` (ID), `s` (Source), `y` (Type).\n   - Output structure: Return objects with EXACTLY two fields: `i` and `t` (Target/Translation).\n   - DO NOT MODIFY `i`.\n   - The `y` (type) field is for YOUR CONTEXT ONLY. Do not include it in output.\n\n# Translation & Safety Rules (CRITICAL)\n1. Context Awareness via y Field\n   - `y` value tells you if text is a `name`, `title`, `description`, `label`, or `markdown`.\n2. Code Protection\n   - DO NOT translate CSS class names or variables.\n3. Brevity for UI\n   - Keep translations concise for settings UI.\n4. Unicode Encoding Preservation (CRITICAL)\n   - If the source string `s` is formatted using Unicode escape sequences (e.g., `\\uXXXX`), your translated text `t` MUST ALSO be converted entirely into Unicode escape sequences.\n   - ❌ Never return standard plain text if the source is Unicode-escaped.\n   - Example: If `s` is `\\u0048\\u0065\\u006c\\u006c\\u006f` (\"Hello\"), and the translation is \"Hola\", `t` must be `\\u0048\\u006f\\u006c\\u0061`.\n\n# Translation Requirements\n- **Target Language:** {{targetLanguage}}\n- **Translation Style:** {{translationStyle}}\n\n{{glossarySection}}\n\n# Quality Checklist (Self-Verify Before Output)\n- [ ] Is the output a totally naked JSON array?\n- [ ] Does each object ONLY contain `i` and `t`?\n- [ ] Are `i` fields unaltered?\n- [ ] If `s` used Unicode escapes (`\\uXXXX`), is `t` correctly encoded as Unicode escapes?",
+  "llmOpenaiProfiles": [
+    {
+      "id": "default",
+      "name": "Default",
+      "url": "",
+      "key": "",
+      "model": "gpt-3.5-turbo",
+      "useCustomPrice": true,
+      "priceInput": 1.1,
+      "priceOutput": 4.4
+    }
+  ],
+  "llmOpenaiActiveProfileId": "default",
+  "llmGeminiProfiles": [
+    {
+      "id": "default",
+      "name": "Default",
+      "url": "",
+      "key": "",
+      "model": "gemini-2.0-flash",
+      "useCustomPrice": false,
+      "priceInput": 0,
+      "priceOutput": 0
+    }
+  ],
+  "llmGeminiActiveProfileId": "default",
+  "llmOllamaProfiles": [
+    {
+      "id": "default",
+      "name": "Default",
+      "url": "http://localhost:11434",
+      "key": "",
+      "model": "",
+      "useCustomPrice": false,
+      "priceInput": 0,
+      "priceOutput": 0
+    }
+  ],
+  "llmOllamaActiveProfileId": "default",
+  "llmDeepseekProfiles": [
+    {
+      "id": "default",
+      "name": "Default",
+      "url": "https://api.deepseek.com/v1",
+      "key": "",
+      "model": "deepseek-chat",
+      "useCustomPrice": false,
+      "priceInput": 0,
+      "priceOutput": 0
+    }
+  ],
+  "llmDeepseekActiveProfileId": "default",
+  "llmZhipuProfiles": [
+    {
+      "id": "default",
+      "name": "Default",
+      "url": "https://open.bigmodel.cn/api/paas/v4",
+      "key": "",
+      "model": "glm-4-flash",
+      "useCustomPrice": false,
+      "priceInput": 0,
+      "priceOutput": 0
+    }
+  ],
+  "llmZhipuActiveProfileId": "default",
+  "llmMoonshotProfiles": [
+    {
+      "id": "default",
+      "name": "Default",
+      "url": "https://api.moonshot.cn/v1",
+      "key": "",
+      "model": "moonshot-v1-8k",
+      "useCustomPrice": false,
+      "priceInput": 0,
+      "priceOutput": 0
+    }
+  ],
+  "llmMoonshotActiveProfileId": "default",
+  "llmAliyunProfiles": [
+    {
+      "id": "default",
+      "name": "Default",
+      "url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "key": "",
+      "model": "qwen-plus",
+      "useCustomPrice": false,
+      "priceInput": 0,
+      "priceOutput": 0
+    }
+  ],
+  "llmAliyunActiveProfileId": "default",
+  "llmBaiduProfiles": [
+    {
+      "id": "default",
+      "name": "Default",
+      "url": "https://qianfan.baidubce.com/v2",
+      "key": "",
+      "model": "ernie-4.0-8k-preview",
+      "useCustomPrice": false,
+      "priceInput": 0,
+      "priceOutput": 0
+    }
+  ],
+  "llmBaiduActiveProfileId": "default",
+  "llmBytedanceProfiles": [
+    {
+      "id": "default",
+      "name": "Default",
+      "url": "https://ark.cn-beijing.volces.com/api/v3",
+      "key": "",
+      "model": "doubao-pro-4k",
+      "useCustomPrice": false,
+      "priceInput": 0,
+      "priceOutput": 0
+    }
+  ],
+  "llmBytedanceActiveProfileId": "default",
+  "llmGroqProfiles": [
+    {
+      "id": "default",
+      "name": "Default",
+      "url": "https://api.groq.com/openai/v1",
+      "key": "",
+      "model": "llama-3.3-70b-versatile",
+      "useCustomPrice": false,
+      "priceInput": 0,
+      "priceOutput": 0
+    }
+  ],
+  "llmGroqActiveProfileId": "default",
+  "llmSiliconflowProfiles": [
+    {
+      "id": "default",
+      "name": "Default",
+      "url": "https://api.siliconflow.cn/v1",
+      "key": "",
+      "model": "deepseek-ai/DeepSeek-V3",
+      "useCustomPrice": false,
+      "priceInput": 0,
+      "priceOutput": 0
+    }
+  ],
+  "llmSiliconflowActiveProfileId": "default",
+  "llmOpenrouterProfiles": [
+    {
+      "id": "default",
+      "name": "Default",
+      "url": "https://openrouter.ai/api/v1",
+      "key": "",
+      "model": "anthropic/claude-3.5-sonnet",
+      "useCustomPrice": false,
+      "priceInput": 0,
+      "priceOutput": 0
+    }
+  ],
+  "llmOpenrouterActiveProfileId": "default",
+  "llmDeepinfraProfiles": [
+    {
+      "id": "default",
+      "name": "Default",
+      "url": "https://api.deepinfra.com/v1/openai",
+      "key": "",
+      "model": "meta-llama/Llama-3.3-70B-Instruct",
+      "useCustomPrice": false,
+      "priceInput": 0,
+      "priceOutput": 0
+    }
+  ],
+  "llmDeepinfraActiveProfileId": "default",
+  "llmMistralProfiles": [
+    {
+      "id": "default",
+      "name": "Default",
+      "url": "https://api.mistral.ai/v1",
+      "key": "",
+      "model": "mistral-small-latest",
+      "useCustomPrice": false,
+      "priceInput": 0,
+      "priceOutput": 0
+    }
+  ],
+  "llmMistralActiveProfileId": "default",
+  "llmMinimaxProfiles": [
+    {
+      "id": "default",
+      "name": "Default",
+      "url": "https://api.minimax.chat/v1",
+      "key": "",
+      "model": "abab6.5-chat",
+      "useCustomPrice": false,
+      "priceInput": 0,
+      "priceOutput": 0
+    }
+  ],
+  "llmMinimaxActiveProfileId": "default",
+  "llmStepfunProfiles": [
+    {
+      "id": "default",
+      "name": "Default",
+      "url": "https://api.stepfun.com/v1",
+      "key": "",
+      "model": "step-1-8k",
+      "useCustomPrice": false,
+      "priceInput": 0,
+      "priceOutput": 0
+    }
+  ],
+  "llmStepfunActiveProfileId": "default",
+  "modeImt": false,
+  "imtPagerule": {
+    "selectors": [
+      "*"
+    ],
+    "excludeSelectors": []
+  },
+  "shareToken": "",
+  "shareRepo": "",
+  "shareProfiles": [],
+  "shareActiveProfileId": "",
+  "reFlags": "gs",
+  "reLength": 300,
+  "reDatas": [
+    "(Notice|log|error|setText|setButtonText|setName|setDesc|setPlaceholder|setTooltip|appendText|setTitle|addHeading|renderMarkdown)\\(\\s*(['\"`])(.*?)\\2\\s*\\)",
+    "(textContent|innerText|name|description|selection|annotation|link|text|search|speech|page|settings)\\s*[:=]\\s*(['\"`])(.*?)\\2"
+  ],
+  "reRejectRe": [
+    "^\\s*$",
+    "^\\d+$",
+    "^[\\w-]+\\.[\\w-]+\\.\\w+$",
+    "^https?:\\/\\/",
+    "^data:image\\/",
+    "^#([0-9a-f]{3}|[0-9a-f]{6})$",
+    "^[a-z0-9-]+$",
+    "^[a-z]+[A-Z][a-zA-Z0-9]*$",
+    "^[A-Z_][A-Z0-9_]*$",
+    "^px|em|rem|vh|vw|auto$",
+    "^rgba?\\(",
+    "^\\.",
+    "\\.(png|jpg|gif|svg|css|js|ts|md|json)$"
+  ],
+  "reValidRe": [
+    "\\s",
+    "[^\\x00-\\x7F]",
+    "[!?,;:。！？，；：]\\s*$"
+  ],
+  "astAssignments": [
+    "overwriteName",
+    "innerHTML",
+    "outerHTML",
+    "title",
+    "alt",
+    "placeholder",
+    "textContent",
+    "innerText",
+    "ariaLabel",
+    "nodeValue"
+  ],
+  "astFunctions": [
+    "Notice",
+    "setTitle",
+    "setContent",
+    "setName",
+    "setDesc",
+    "setButtonText",
+    "setPlaceholder",
+    "setTooltip",
+    "addOption",
+    "addHeading",
+    "addText",
+    "setHint",
+    "setWarning",
+    "setText",
+    "appendText",
+    "createEl",
+    "createDiv",
+    "createSpan",
+    "addCommand",
+    "insertText",
+    "replaceRange",
+    "replaceSelection",
+    "log",
+    "error",
+    "warn",
+    "info",
+    "alert",
+    "confirm",
+    "prompt"
+  ],
+  "astKeys": [
+    "name",
+    "description",
+    "text",
+    "placeholder",
+    "label",
+    "tooltip",
+    "title",
+    "header",
+    "desc",
+    "message",
+    "buttontext",
+    "aria-label",
+    "heading",
+    "content",
+    "tab",
+    "caption",
+    "subtitle",
+    "summary",
+    "info",
+    "warning",
+    "error",
+    "success",
+    "hint",
+    "instructions",
+    "link",
+    "selection",
+    "annotation",
+    "search",
+    "speech",
+    "page",
+    "empty",
+    "detail",
+    "body",
+    "option",
+    "notice"
+  ],
+  "astRejectRe": [
+    "^\\s*$",
+    "^\\d+$",
+    "^[\\w-]+\\.[\\w-]+\\.\\w+$",
+    "^https?:\\/\\/",
+    "^data:image\\/",
+    "^#([0-9a-f]{3}|[0-9a-f]{6})$",
+    "^[a-z0-9-]+$",
+    "^[a-z]+[A-Z][a-zA-Z0-9]*$",
+    "^[A-Z_][A-Z0-9_]*$",
+    "^px|em|rem|vh|vw|auto$",
+    "^rgba?\\(",
+    "^\\.",
+    "\\.(png|jpg|gif|svg|css|js|ts|md|json)$"
+  ],
+  "astValidRe": [
+    "\\s",
+    "[^\\x00-\\x7F]",
+    "[!?,;:。！？，；：]\\s*$"
+  ],
+  "githubProxyUrl": "https://ghp.ci/",
+  "cloudRepos": [],
+  "defaultCloudRepo": "",
+  "managerTab": "plugins",
+  "pluginViewMode": "list",
+  "themeViewMode": "grid",
+  "autoSave": true,
+  "autoDiscovery": false,
+  "autoMatchStrategy": "comprehensive",
+  "autoApply": false,
+  "autoCheckInterval": 24,
+  "autoTrustedRepos": [],
+  "autoExcludeList": [],
+  "autoScanMode": "incremental",
+  "lastAutoCheckTime": 0,
+  "reTempMode": true,
+  "reTemp": "",
+  "I18N_AGREEMENT": true,
+  "I18N_WIZARD": false,
+  "I18N_UUID": "6f87b8e1-80db-49fb-83c0-1ad3bfc9b1d2",
+  "I18N_LANGUAGE": "zh-cn",
+  "I18N_COLOR": "#409EFF",
+  "I18N_AUTHOR": "",
+  "I18N_EDIT_MODE": true,
+  "I18N_OPEN_SETTINGS": true,
+  "I18N_CHECK_UPDATES": true,
+  "I18N_SEARCH_TEXT": "",
+  "I18N_SORT": "0",
+  "I18N_TYPE": "0",
+  "I18N_MODE": 0,
+  "I18N_NOTICE": true,
+  "I18N_START_TIME": true,
+  "I18N_MODE_LDT": true,
+  "I18N_AUTOMATIC_UPDATE": false,
+  "I18N_INCREMENTAL_EXTRACTION": false,
+  "I18N_NAME_TRANSLATION": false,
+  "I18N_NAME_TRANSLATION_PREFIX": "[",
+  "I18N_NAME_TRANSLATION_SUFFIX": "]",
+  "I18N_STYLE_SETTINGS": "obsidian-style-settings",
+  "I18N_MODE_NDT": true,
+  "I18N_IGNORE": false,
+  "I18N_NDT_URL": "gitee",
+  "I18N_MODE_NIT": false,
+  "I18N_NIT_API": "BAIDU",
+  "I18N_NIT_API_INTERVAL": 500,
+  "I18N_NIT_APIS": {
+    "BAIDU": {
+      "FROM": "auto",
+      "TO": "zh",
+      "APP_ID": "",
+      "KEY": ""
+    }
+  },
+  "I18N_NIT_OPENAI_URL": "https://api.openai.com",
+  "I18N_NIT_OPENAI_KEY": "",
+  "I18N_NIT_OPENAI_MODEL": "gpt-3.5-turbo",
+  "I18N_NIT_OPENAI_TIPS": "你是一个翻译工作者，你将进行obsidian笔记软件的插件翻译，本次翻译的插件名称为: ${plugin}，请结合插件名称以及软件翻译的标准进行后续工作，因为大多数文本长度较短，请以符合中文习惯的方式翻译。接下来我会提交给你很多英文文本，请将其翻译为简体中文，并且只返回给我翻译后的内容",
+  "I18N_MODE_IMT": false,
+  "I18N_IMT_CONFIG": {
+    "selectors": [
+      "*"
+    ],
+    "excludeSelectors": [
+      ".modal .i18n__container"
+    ],
+    "excludeTags": [],
+    "additionalSelectors": [],
+    "additionalExcludeSelectors": [],
+    "additionalExcludeTags": [],
+    "stayOriginalSelectors": [],
+    "stayOriginalTags": [],
+    "atomicBlockSelectors": [],
+    "atomicBlockTags": []
+  },
+  "I18N_SHARE_MODE": true,
+  "I18N_SHARE_TOKEN": "",
+  "I18N_ADMIN_MODE": false,
+  "I18N_ADMIN_VERIFY": false,
+  "I18N_ADMIN_TOKEN": "",
+  "I18N_RE_TEMP_MODE": true,
+  "I18N_RE_TEMP": "",
+  "I18N_RE_MODE": "默认",
+  "I18N_RE_FLAGS": "gs",
+  "I18N_RE_LENGTH": 300,
+  "I18N_RE_MODE_EDIT": false,
+  "I18N_RE_MODE_DISPLAY": false,
+  "I18N_RE_DATAS_DISPLAY": false,
+  "I18N_RE_MODES": [
+    "默认"
+  ],
+  "I18N_RE_DATAS": {
+    "默认": [
+      "Notice\\(\\s*(.+?)\\s*\\)",
+      ".log\\(\\s*(.+?)\\s*\\)",
+      ".error\\(\\s*(.+?)\\s*\\)",
+      "t\\s*=\\s*:\\s*(['\"`])(.+?)\\1",
+      ".textContent\\s*=\\s*:\\s*(['\"`])(.+?)\\1",
+      "name\\s*:\\s*(['\"`])(.+?)\\1",
+      "description\\s*:\\s*(['\"`])(.+?)\\1",
+      "selection\\s*:\\s*(['\"`])(.+?)\\1",
+      "annotation\\s*:\\s*(['\"`])(.+?)\\1",
+      "link\\s*:\\s*(['\"`])(.+?)\\1",
+      "text\\s*:\\s*(['\"`])(.+?)\\1",
+      "search\\s*:\\s*(['\"`])(.+?)\\1",
+      "speech\\s*:\\s*(['\"`])(.+?)\\1",
+      "page\\s*:\\s*(['\"`])(.+?)\\1",
+      "settings\\s*:\\s*(['\"`])(.+?)\\1",
+      ".setText\\(\\s*(['\"`])(.+?)\\1\\s*\\)",
+      ".setButtonText\\(\\s*(['\"`])(.+?)\\1\\s*\\)",
+      ".setName\\(\\s*(['\"`])(.+?)\\1\\s*\\)",
+      ".setDesc\\(\\s*(['\"`])(.+?)\\1\\s*\\)",
+      ".setPlaceholder\\(\\s*(['\"`])(.+?)\\1\\s*\\)",
+      ".setTooltip\\(\\s*(['\"`])(.+?)\\1\\s*\\)",
+      ".appendText\\(\\s*(['\"`])(.+?)\\1\\s*\\)",
+      ".setTitle\\(\\s*(['\"`])(.+?)\\1\\s*\\)",
+      ".addHeading\\(\\s*(['\"`])(.+?)\\1\\s*\\)",
+      ".renderMarkdown\\(\\s*(['\"`])(.+?)\\1\\s*\\)",
+      ".innerText\\s*=\\s*(['\"`]).*?\\1"
+    ]
+  },
+  "I18N_TAG_TYPE": "light",
+  "I18N_TAG_SHAPE": "square",
+  "I18N_BUTTON_TYPE": "default",
+  "I18N_BUTTON_SHAPE": "square"
+}

@@ -1,0 +1,161 @@
+/* 修改编辑器中显示的 md 文件名（即 inline title）的字体大小 */
+.inline-title {
+  font-size: 36px !important;
+  font-weight: 900 !important;
+  color: #e681f3
+}
+/* ========== 标题样式（所有模式） ========== */
+h1, h2, h3, h4, h5, h6,
+.markdown-preview-view h1, .markdown-source-view h1, .cm-s-obsidian .HyperMD-header-1,
+.markdown-preview-view h2, .markdown-source-view h2, .cm-s-obsidian .HyperMD-header-2,
+.markdown-preview-view h3, .markdown-source-view h3, .cm-s-obsidian .HyperMD-header-3,
+.markdown-preview-view h4, .markdown-source-view h4, .cm-s-obsidian .HyperMD-header-4 {
+  font-weight: 700;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+/* H1 特殊样式 */
+.markdown-preview-view h1, .markdown-source-view h1, .cm-s-obsidian .HyperMD-header-1 {
+  font-size: 2.25em;
+  border-bottom: 2px solid var(--color-base-40);
+  padding-bottom: 0.2em;
+}
+
+/* H2 特殊样式 */
+.markdown-preview-view h2, .markdown-source-view h2, .cm-s-obsidian .HyperMD-header-2 {
+  font-size: 1.75em;
+  padding-left: 0.6em;
+}
+
+/* H3、H4 */
+.markdown-preview-view h3, .markdown-source-view h3, .cm-s-obsidian .HyperMD-header-3 {
+  font-size: 1.5em;
+}
+.markdown-preview-view h4, .markdown-source-view h4, .cm-s-obsidian .HyperMD-header-4 {
+  font-size: 1.25em;
+}
+
+/* ========== 代码块 code block ========== */
+.markdown-preview-view pre code,
+.markdown-source-view pre code,
+.cm-s-obsidian .HyperMD-codeblock {
+  display: block;
+  font-size: 0.8em;
+}
+
+/* 减小 Obsidian Banners 的上下间距 */
+.obsidian-banner-wrapper {
+  margin-bottom: 100px !important; /* 原值可能是 2rem 或更大，适当缩小 */
+  margin-top: 0px !important;      /* 如果上方也有距离，可以一起控制 */
+}
+.obsidian-banner {
+  margin-bottom: 0px !important; /* 原值可能是 2rem 或更大，适当缩小 */
+  margin-top: 0px !important;      /* 如果上方也有距离，可以一起控制 */
+}
+
+/* =========================================================
+   Mermaid 浅色紫色主题（清爽 / 论文风 / 高可读）
+   ========================================================= */
+
+/* ===== 全局 ===== */
+.mermaid {
+  font-family: "JetBrains Mono", monospace !important;
+  font-size: 12px !important;
+  background: transparent !important;   /* ❗不再强制深色背景 */
+}
+
+/* ===== 字体（核心） ===== */
+.mermaid .label span,
+.mermaid .node text,
+.mermaid .edgeLabel,
+.mermaid .messageText,
+.mermaid .noteText,
+.mermaid .actor {
+  font-family: "JetBrains Mono", monospace !important;
+  color: #2b2d42 !important;
+  fill: #2b2d42 !important;
+}
+
+/* 主节点文字 */
+.mermaid .label span {
+  font-size: 11px !important;
+}
+
+/* 边 / 注释文字 */
+.mermaid .edgeLabel,
+.mermaid .messageText,
+.mermaid .noteText {
+  font-size: 10px !important;
+}
+
+/* ===== 节点（紫色风核心） ===== */
+.mermaid .node rect,
+.mermaid .node polygon,
+.mermaid .node ellipse {
+  fill: #f5f3ff !important;          /* 浅紫背景 */
+  stroke: #8b5cf6 !important;        /* 主紫色 */
+  stroke-width: 1.2px !important;
+  rx: 8px !important;
+  ry: 8px !important;
+}
+
+/* ===== 子图（cluster） ===== */
+.mermaid .cluster rect {
+  fill: #ede9fe !important;          /* 更淡紫 */
+  stroke: #8b5cf6 !important;
+  stroke-dasharray: 4 2;
+}
+
+/* ===== 连线 ===== */
+.mermaid .edgePath path {
+  stroke: #a78bfa !important;        /* 柔和紫 */
+  stroke-width: 1.2px !important;
+}
+
+/* 箭头 */
+.mermaid marker path {
+  fill: #a78bfa !important;
+}
+
+/* ===== label 背景（边文字框） ===== */
+.mermaid .edgeLabel {
+  background-color: transparent !important;
+}
+
+
+/* ===== sequenceDiagram ===== */
+.mermaid .actor {
+  fill: #f5f3ff !important;
+  stroke: #8b5cf6 !important;
+}
+
+.mermaid .messageLine0,
+.mermaid .messageLine1 {
+  stroke: #a78bfa !important;
+}
+
+.mermaid .note {
+  fill: #ede9fe !important;
+  stroke: #8b5cf6 !important;
+}
+
+/* ===== gantt（可选） ===== */
+.mermaid .task {
+  fill: #c4b5fd !important;
+  stroke: none !important;
+}
+
+/* ===== ❗不限制大小（你特别要求的） ===== */
+.mermaid svg {
+  max-width: none !important;
+}
+
+/* ===== 可选：更紧凑 ===== */
+.mermaid {
+  line-height: 1. !important;
+}
+
+
+
+

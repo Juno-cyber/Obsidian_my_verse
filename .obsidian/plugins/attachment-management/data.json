@@ -1,0 +1,195 @@
+{
+  "attachPath": {
+    "attachmentRoot": "",
+    "saveAttE": "obsFolder",
+    "attachmentPath": "${notepath}/${notename}",
+    "attachFormat": "${originalname}",
+    "type": "GLOBAL"
+  },
+  "dateFormat": "YYYYMMDDHHmmssSSS",
+  "excludeExtensionPattern": "",
+  "autoRenameAttachment": true,
+  "excludedPaths": "",
+  "excludePathsArray": [],
+  "excludeSubpaths": false,
+  "originalNameStorage": [
+    {
+      "n": "047b82504debc8570b964658b1b805fd",
+      "md5": "F3B8B78693D0F0EE18736836ECFDC79C"
+    },
+    {
+      "n": "Pasted image 20250626001432",
+      "md5": "D28A16C27976A74535907514DDD53C92"
+    },
+    {
+      "n": "image-20250528012814054",
+      "md5": "6ED6B10AB6CECC472A268B724EAB6B9E"
+    },
+    {
+      "n": "image-20250528231126248",
+      "md5": "F42E4196A66EC677759935EDA7A61B2D"
+    },
+    {
+      "n": "image-20250528225526546",
+      "md5": "6A71EAD1897061C1319EEF524552B9C3"
+    },
+    {
+      "n": "image-20250528011641297",
+      "md5": "E2FD59754FED7DA57F66DE35D3CB1CF9"
+    },
+    {
+      "n": "image-20250528011511624",
+      "md5": "E312315B314078890A4AB674A6AF00CF"
+    },
+    {
+      "n": "Pasted image 20250621141451",
+      "md5": "4BD626F74BD4DEC295F23249461FB813"
+    },
+    {
+      "n": "8513dab0402bea6a81758f753b112611",
+      "md5": "DD1BCBB9514203D7F9B5D6AC74E12757"
+    },
+    {
+      "n": "Pasted image 20250628163930",
+      "md5": "C8CD7865972DB7E86AE03C51584C4368"
+    },
+    {
+      "n": "Pasted image 20250628163957",
+      "md5": "458E7929FDF90050EE576AA6904E9CBF"
+    },
+    {
+      "n": "Pasted image 20250630233530",
+      "md5": "29BEA5B89A721011AC95BEE700B9C719"
+    },
+    {
+      "n": "Pasted image 20250702143956",
+      "md5": "190E0F425F17D3F82B2DEA0E3F778A5D"
+    },
+    {
+      "n": "Pasted image 20250705181839",
+      "md5": "2E3BDCA432D160F3A6D7270496162966"
+    },
+    {
+      "n": "Pasted image 20250705183126",
+      "md5": "F87941D3CDF0F536AD68B177B669DE30"
+    },
+    {
+      "n": "Pasted image 20250705221330",
+      "md5": "0571E50C60B32D0B705377D35F91A5BA"
+    },
+    {
+      "n": "Pasted image 20250705222134",
+      "md5": "33C3B339DA1CDDF8E0BAF231712E0F4E"
+    },
+    {
+      "n": "Pasted image 20250705223049",
+      "md5": "DB6311E5B7BD07D72FCC8467C6FD8D71"
+    },
+    {
+      "n": "Pasted image 20250706140418",
+      "md5": "8FAF792D7F80EF947B8BB8973F8A2314"
+    },
+    {
+      "n": "Pasted image 20250706151851",
+      "md5": "DBA87D47279D96F9FB075887B8A4AFBA"
+    },
+    {
+      "n": "Pasted image 20250706151934",
+      "md5": "839F0AB10F9293BC6B81B74FDEC421AC"
+    },
+    {
+      "n": "Pasted image 20250706233335",
+      "md5": "25C9DBF1C35CFA72CEBC664818AA4C15"
+    },
+    {
+      "n": "Pasted image 20250707001858",
+      "md5": "DEA32C55553E5DB159207CA723AF92EF"
+    },
+    {
+      "n": "Pasted image 20250712140104",
+      "md5": "F29A8A0667C73064FCAFA84B3F9522B4"
+    },
+    {
+      "n": "Pasted image 20250716163907",
+      "md5": "F52421012E0ADD29C82670EDCFC3090A"
+    },
+    {
+      "n": "Pasted image 20250716163930",
+      "md5": "C4259769F99BB8E6D9CBFB18BB320985"
+    },
+    {
+      "n": "Pasted image 20250716171226",
+      "md5": "79DAD479A0063754ABC8811E3BAA957F"
+    },
+    {
+      "n": "main_image_star-forming_region_carina_nircam_final-5mb",
+      "md5": "3BAE2C6845352E627516A529FD507FFB"
+    },
+    {
+      "n": "Pasted image 20250727154848",
+      "md5": "DEAF9731CA78A000E3C3891FD738A57F"
+    },
+    {
+      "n": "Pasted image 20250730235940",
+      "md5": "B8DDF8F621F1027E26E554897D3AC532"
+    },
+    {
+      "n": "Pasted image 20250730235956",
+      "md5": "78D286F191DFE27E8DA10000C104D06F"
+    },
+    {
+      "n": "79b13a8264f8e102f42c6baf0266e04",
+      "md5": "5595008681D4AB99AA22731FC7B73890"
+    },
+    {
+      "n": "Pasted image 20251013145904",
+      "md5": "4552CBE264D980127ED3D91AEB421ACA"
+    },
+    {
+      "n": "Pasted image 20251015161908",
+      "md5": "3CB01788F04B0698B81E1A695248B993"
+    },
+    {
+      "n": "Pasted image 20251015161926",
+      "md5": "E35AB035DB4488AE155416BF7ADBBB6F"
+    },
+    {
+      "n": "Pasted image 20251015175239",
+      "md5": "9373220651C3BEE0ED5E1AC82620D4AC"
+    },
+    {
+      "n": "Pasted image 20251016084226",
+      "md5": "F86D974E31574B5AC48768914C9CB341"
+    },
+    {
+      "n": "image-20241013221853169",
+      "md5": "C0403331C7FB2F549EE133872F2D51B0"
+    },
+    {
+      "n": "Pasted image 20251115203055",
+      "md5": "5D911598BCD0E627C25EFF1567462C24"
+    },
+    {
+      "n": "Pasted image 20251116150833",
+      "md5": "9975959E18BF4C4EE171C4397ABE646D"
+    },
+    {
+      "n": "Pasted image 20251116151926",
+      "md5": "4F63191628DFF02FA31A4F27F3F5568D"
+    },
+    {
+      "n": "Pasted image 20251116151938",
+      "md5": "29A10F6870A56FB89C3485611A8F418D"
+    },
+    {
+      "n": "Pasted image 20251116152038",
+      "md5": "8764986D5C01E7CBCA230117782BD2EC"
+    },
+    {
+      "n": "Pasted image 20251122155923",
+      "md5": "E6C68817697D85707763D7F2C908E288"
+    }
+  ],
+  "overridePath": {},
+  "disableNotification": false
+}

@@ -1,0 +1,23 @@
+# —————— 忽略 Obsidian 临时 / UI 状态文件 ——————
+.obsidian/workspace.json
+.obsidian/workspaces.json
+.obsidian/workspace-mobile.json
+.obsidian/app.json
+.obsidian/graph.json
+
+# —————— 可选：忽略所有插件数据（如果不需要同步） ——————
+# .obsidian/plugins/*/data.json
+.obsidian/plugins/recent-files-obsidian/data.json
+
+# —————— 忽略主题和 CSS 片段（可选，同步主题需保留以下） ——————
+# .obsidian/themes/
+# .obsidian/snippets/
+
+# —————— 操作系统 & 编辑器缓存，避免推送无用内容 ——————
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# —————— 其他临时或缓存文件夹 ——————
+.trash/

@@ -1,0 +1,10 @@
+{
+    "id": "obsidian-icon-folder",
+    "name": "Iconize",
+    "version": "2.14.7",
+    "minAppVersion": "0.9.12",
+    "description": "为 Obsidian 中的任何内容添加图标，包括文件、文件夹和文本。",
+    "author": "Florian Woelki",
+    "authorUrl": "https://florianwoelki.com/",
+    "isDesktopOnly": false
+}

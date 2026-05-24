@@ -1,0 +1,10 @@
+{
+  "cssTheme": "Minimal",
+  "theme": "moonstone",
+  "baseFontSize": 16,
+  "enabledCssSnippets": [
+    "测试样式",
+    "Minimal_better"
+  ],
+  "accentColor": "#c364dd"
+}
