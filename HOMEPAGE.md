@@ -52,7 +52,7 @@ const diaryMap = new Map();
 const files = dv.pages('"nodes/dairy"').file;
 for (const f of files) {
     const content = await dv.io.load(f.path);
-    const m = content.match(/^---\n([\s\S]*?)\n---/);
+    const m = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
     if (m) {
         const dm = m[1].match(/date:\s*"?(\d{4}-\d{2}-\d{2})"?/);
         if (dm) diaryMap.set(dm[1], f.path);

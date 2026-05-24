@@ -1,5 +1,5 @@
 {
   "folder": "nodes/dairy",
   "template": "Template/daily dairy template",
-  "format": "YYYY-MM-DD-什么事？"
+  "format": "YYYY-MM-DD"
 }
